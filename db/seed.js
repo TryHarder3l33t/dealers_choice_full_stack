@@ -4,7 +4,7 @@ const User = require("./models/users");
 const seed = async () => {
   try {
     await db.sync({ force: true });
-    User.create({ name: "Eric" });
+    User.create({ name: "Eric Prof" });
     User.create({ name: "Miles" });
     User.create({ name: "TinaMarie" });
     User.create({ name: "Alicia" });

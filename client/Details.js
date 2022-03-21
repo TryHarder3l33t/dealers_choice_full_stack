@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { readDetail, updateDetail } from "../store/detailActions";
+import { Link } from "react-router-dom";
 
 const Detail = ({ readDetail, detail, updateDetail }) => {
   const params = useParams();
@@ -9,7 +10,11 @@ const Detail = ({ readDetail, detail, updateDetail }) => {
     readDetail(params.id);
   }, []);
   const [name, setName] = useState("");
-  return (
+  return detail.loading ? (
+    <h2 style={{ color: "red" }}> Loading...</h2>
+  ) : detail.error ? (
+    <h2>We Didn't make It :( {detail.error}</h2>
+  ) : (
     <div>
       <h1> Detail page</h1>
       <p>{detail.name}</p>
@@ -30,6 +35,10 @@ const Detail = ({ readDetail, detail, updateDetail }) => {
         ></input>
         <button disabled={!name}> Update User To {name}</button>
       </form>
+
+      <Link to={"/"}>
+        <h2> Back </h2>
+      </Link>
 
       <pre>{name}</pre>
     </div>
